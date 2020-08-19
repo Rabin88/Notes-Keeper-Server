@@ -3,18 +3,16 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require('mongoose');
 const cors = require("cors");
-
 require('dotenv').config();
+
 
 const app = express();
 
 app.set('view engine', 'ejs');
-
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use (bodyParser.json());
-
 app.use(express.static("public"));
 app.use(cors());
 
@@ -139,7 +137,29 @@ app.route("/notes/:noteTitle")
 //    console.log("Server started on port 4000")
 // })
 
+function normalizePort(val) {
+	var port = parseInt(val, 10);
+ 
+	if (isNaN(port)) {
+	  // named pipe
+	  return val;
+	}
+ 
+	if (port >= 0) {
+	  // port number
+	  return port;
+	}
+ 
+	return false;
+ }
 
-app.listen( process.env.PORT || 4000, function(){
-  console.log("Server is running on localhost 4000");
-})
+ var port = normalizePort(process.env.PORT || 6000);
+
+ app.listen(port, function(){
+	console.log(`Server is running on port ${port}`);
+ })
+
+
+// app.listen(process.env.PORT || 5000, function(){
+//   console.log("Server is running on localhost 5000");
+// })
