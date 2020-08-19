@@ -22,8 +22,9 @@ let mongoUser = process.env.Username;
 let mongoPass = encodeURIComponent(process.env.Password);
 // let mongoUser = 'rabin';
 // let mongoPass = encodeURIComponent('Thames@09');
-let connectionStr = `mongodb+srv://${mongoUser}:${mongoPass}@cluster0-yazdi.mongodb.net/notesDB?retryWrites=true&w=majority`; 
-mongoose.connect(connectionStr, {useNewUrlParser: true });
+// let connectionStr = `mongodb+srv://${mongoUser}:${mongoPass}@cluster0-yazdi.mongodb.net/notesDB?retryWrites=true&w=majority`; 
+let connectionStr = process.env.MongoDB_URL;
+mongoose.connect(connectionStr, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology:true });
 
 // Note Schema for Database
 const noteSchema = {
@@ -137,29 +138,7 @@ app.route("/notes/:noteTitle")
 //    console.log("Server started on port 4000")
 // })
 
-function normalizePort(val) {
-	var port = parseInt(val, 10);
- 
-	if (isNaN(port)) {
-	  // named pipe
-	  return val;
-	}
- 
-	if (port >= 0) {
-	  // port number
-	  return port;
-	}
- 
-	return false;
- }
 
- var port = normalizePort(process.env.PORT || 6000);
-
- app.listen(port, function(){
-	console.log(`Server is running on port ${port}`);
- })
-
-
-// app.listen(process.env.PORT || 5000, function(){
-//   console.log("Server is running on localhost 5000");
-// })
+app.listen(process.env.PORT || 5000, function(){
+  console.log("Server is running on localhost 5000");
+})
