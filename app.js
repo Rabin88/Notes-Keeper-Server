@@ -34,6 +34,14 @@ const noteSchema = {
 // Export Note Module
 const Note = mongoose.model("Note", noteSchema)
 
+app.route("/")
+.get(function (req, res){
+    
+		// res.json({message: "Success"});
+		res.send("Connected to Server");
+      
+   });
+
 // POST route to save Note in Database
 app.route("/notes")
 .post(function(req, res){
