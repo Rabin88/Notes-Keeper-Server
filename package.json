@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -13,10 +17,12 @@
     "nodemon": "^2.0.4",
     "package.json": "^2.0.1"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "engines":{
+    "node": "12.18.3",
+    "npm": "6.14.6"
   },
+  "devDependencies": {},
+
   "author": "",
   "license": "ISC"
 }
